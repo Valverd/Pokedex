@@ -14,6 +14,9 @@ export default function Home() {
 
     return pokemons ? (
         <div>
+
+            <h1>Pokedéx</h1>
+
             {
                 pokemons.map((pokemon, i) => {
                     let id = i + 1;
