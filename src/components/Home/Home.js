@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../Services/api';
+
 
 export default function Home() {
 
@@ -11,7 +13,6 @@ export default function Home() {
         });
     }, []);
 
-
     return pokemons ? (
         <div>
 
@@ -20,17 +21,18 @@ export default function Home() {
             {
                 pokemons.map((pokemon, i) => {
                     let id = i + 1;
-                    let icon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+                    let icon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
                     return (
-                        <div key={i}>
-                            <p>{pokemon.name}</p>
-                            <img src={icon} alt={pokemon.name} />
-                        </div>
-                    )
+                        <Link key={i} className='poke-list' to={'/pokemon/' + id} style={{textDecoration: 'none'}}>
+                            <p className='poke-list-name'>{pokemon.name}</p>
+                            <img className='poke-list-icon' src={icon} alt={pokemon.name} />
+                        </Link>
+                    );
                 })
             }
+
         </div>
     ) : 
     
     <div></div>
-}
+};
